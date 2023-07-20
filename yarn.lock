@@ -1980,6 +1980,21 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
+"@types/react-native-vector-icons@^6.4.13":
+  version "6.4.13"
+  resolved "https://registry.yarnpkg.com/@types/react-native-vector-icons/-/react-native-vector-icons-6.4.13.tgz#28b34d15094e040718beefb67cb3eff0c4994cb6"
+  integrity sha512-1PqFoKuXTSzMHwGMAr+REdYJBQAbe9xrww3ecZR0FsHcD1K+vGS/rxuAriL4rsI6+p69sZQjDzpEVAbDQcjSwA==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "^0.70"
+
+"@types/react-native@^0.70":
+  version "0.70.14"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.70.14.tgz#8619b8c94296f6456c5362d74a3d1b4fad3f54ab"
+  integrity sha512-Kwc+BYBrnDqvacNxKp1UtcZJnJJnTih2NYmi/ieAKlHdxEPN6sYMwmIwgHdoLHggvml6bf3DYRaH2jt+gzaLjw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-test-renderer@^18.0.0":
   version "18.0.0"
   resolved "https://registry.yarnpkg.com/@types/react-test-renderer/-/react-test-renderer-18.0.0.tgz#7b7f69ca98821ea5501b21ba24ea7b6139da2243"
@@ -4662,6 +4677,60 @@ kleur@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
   integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
+
+lefthook-darwin-arm64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-darwin-arm64/-/lefthook-darwin-arm64-1.4.6.tgz#a3c8354d4439b74421c3831a821ec5227c6dc9a2"
+  integrity sha512-f5ltgViAdXf9QOiDDdXkH7///Agmz8gxS13GDoymqg6rg8XM4cXhGbqmNGjTGRV3J10xiJaeyYTFIkBpjLspTw==
+
+lefthook-darwin-x64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-darwin-x64/-/lefthook-darwin-x64-1.4.6.tgz#61d6baf8b6b08c5345471a7ec994054417301081"
+  integrity sha512-/SRG2vs4L6Fc4xnbpiDl59rJvqJPNjqPwfmyQI1BQ/GiWP6hkZWtBA9OqkBanqCFndUumq6+Ik7EBjNT2OxB/w==
+
+lefthook-freebsd-arm64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-freebsd-arm64/-/lefthook-freebsd-arm64-1.4.6.tgz#ea2a65d966e316222db63e0f3e36017066225788"
+  integrity sha512-n9qLbVw1SSOeL0b7hsqqji1BMPm3sNBC5rtJfUU3lyHWNmzZXnaVozgli7GdeGqq5Q3RdZSZqHiNQUF2ly/qYw==
+
+lefthook-freebsd-x64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-freebsd-x64/-/lefthook-freebsd-x64-1.4.6.tgz#d54a2a29623a3b66bc3aa3842d3ea9a3ae4b3400"
+  integrity sha512-GI4NvUbzVI1covKvtIOvFEP88W1uOQivFu2NfEwPq0AWYJhrCY22NnjhDWvSRZ4lk0QGevctxYwjAn+hevrgKg==
+
+lefthook-linux-arm64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-linux-arm64/-/lefthook-linux-arm64-1.4.6.tgz#aa8573553c3ee0fe597d5683e82d518c8d54c762"
+  integrity sha512-psoakCaOoD2M7YvRzThLdO4cMZOcaMHrgSwiSC8AA2m5jRmIp8W7wKUCugAU5+BEusNA986ZC5xXmcyV2+34/A==
+
+lefthook-linux-x64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-linux-x64/-/lefthook-linux-x64-1.4.6.tgz#f6ecfba6477d48c900194dbc26ed430907a3a9ea"
+  integrity sha512-WwIDWuandedgd9yRCfDgAp6fq7EnxWglOgGA4IuVdKEFUHUxKJ5poNrbW4Q63AvQ63BQL2k9OLTapjUQMBC+Fw==
+
+lefthook-windows-arm64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-windows-arm64/-/lefthook-windows-arm64-1.4.6.tgz#586bb92835291d373626ccdcd1f7c9a79d414dae"
+  integrity sha512-LVNRKgGdoHwEZgvLevlep3YFFW6mfRyroVBq59KnHUQS/mc8UT0AqWIkqSxipfDz//3Aai7c6TvGHW+EchRMxg==
+
+lefthook-windows-x64@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook-windows-x64/-/lefthook-windows-x64-1.4.6.tgz#799b4e114d78e11593abb070e69137ab698647d5"
+  integrity sha512-jvlNLHN4iPsixmWbWRdFxdQ+MbiM8vAyJCz1MA6+zQ8kEn1mpDdH/CCjrjyj0ypKHME5VXnrlx14dq7XtqQjwg==
+
+lefthook@^1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/lefthook/-/lefthook-1.4.6.tgz#0b11eeba682165a959b973b15c04f7dc9b29fce5"
+  integrity sha512-Zb1Dp5IUzK4fblKKVdlsLEwaCj/Ug7i03fCVmULbYjpKANJyeTrYxONrc5xQA+nouFaR+SicscxAqEmgHCkHog==
+  optionalDependencies:
+    lefthook-darwin-arm64 "1.4.6"
+    lefthook-darwin-x64 "1.4.6"
+    lefthook-freebsd-arm64 "1.4.6"
+    lefthook-freebsd-x64 "1.4.6"
+    lefthook-linux-arm64 "1.4.6"
+    lefthook-linux-x64 "1.4.6"
+    lefthook-windows-arm64 "1.4.6"
+    lefthook-windows-x64 "1.4.6"
 
 leven@^3.1.0:
   version "3.1.0"

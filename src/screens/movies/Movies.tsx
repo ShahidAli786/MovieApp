@@ -80,17 +80,17 @@ export default function Movies() {
         <View style={styles.browseList}>
           <BrowseListItem
             onPress={() => handleMovieList('Now Playing', 'now_playing')}
-            icon="md-play"
+            icon="play"
             title="Now Playing"
           />
           <BrowseListItem
             onPress={() => handleMovieList('Top Rated', 'top_rated')}
-            icon="md-trending-up"
+            icon="trending-up"
             title="Top Rated"
           />
           <BrowseListItem
             onPress={() => handleMovieList('Upcoming', 'upcoming')}
-            icon="md-recording"
+            icon="recording"
             title="Upcoming"
           />
         </View>
