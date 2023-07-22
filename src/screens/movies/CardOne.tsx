@@ -46,7 +46,7 @@ export default function CardOne({info, onViewDetails}: Props) {
           </View>
           <View style={styles.cardNumbers}>
             <View style={styles.cardStar}>
-              <Icon name="md-star" size={16} color="#F5B642" />
+              <Icon name="star" size={14} color="#F5B642" />
               <Text style={styles.cardStarRatings}>8.9</Text>
             </View>
             <Text style={styles.cardRunningHours} />

@@ -42,7 +42,7 @@ function MovieListItem({info, onViewDetails}: Props) {
             </View>
             <View style={styles.cardNumbers}>
               <View style={styles.cardStar}>
-                <Icon name="md-star" size={16} color="#F5B642" />
+                <Icon name="star" size={16} color="#F5B642" />
 
                 <Text
                   style={[
@@ -104,7 +104,8 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   cardDescription: {
-    fontSize: 13,
+    ...fonts.regular,
+    fontSize: 12,
     marginTop: 5,
   },
   cardNumbers: {
