@@ -3,7 +3,6 @@ import {TMDB_API_KEY, TMDB_URL} from '@config/config';
 import {Genre, IMovieDetails, TYPE} from '@definitions/movies';
 import {IMoviesListResponse, INowPlayingsResponse} from './moviesTypes';
 
-console.log(TMDB_URL);
 export const moviesApis = createApi({
   reducerPath: 'createPostApis',
   baseQuery: fetchBaseQuery({
