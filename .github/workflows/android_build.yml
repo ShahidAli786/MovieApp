@@ -1,0 +1,37 @@
+name: Publish iOS and Android App to App Store and Play Store
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release-android:
+    name: Build and release Android app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create .env file
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          envkey_TMDB_URL: ${{ secrets.TMDB_URL }}
+          envkey_TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          envkey_TMDB_IMG_URL: ${{ secrets.TMDB_IMG_URL }}
+          file_name: .env
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '19.x'
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.2'
+      - name: Install Fastlane
+        run: cd android && bundle install && cd ..
+      - name: Install packages
+        run: yarn install
+      - name: Checking linting
+        run: yarn lint
+      - name: Execute Fastlane command
+        run: cd android && fastlane beta
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-release.apk
+          path: android/app/build/outputs/apk/release/
