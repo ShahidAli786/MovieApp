@@ -29,31 +29,90 @@ export interface Collection {
   poster_path: string;
 }
 
-interface Company {
+// interface Company {
+//   id: number;
+//   logo_path: string;
+//   name: string;
+// }
+// interface Country {
+//   iso_3166_1: string;
+//   name: string;
+// }
+// interface Language {
+//   iso_639_1: string;
+//   name: string;
+// }
+
+type ProductionCompany = {
   id: number;
-  logo_path: string;
+  logo_path: string | null;
   name: string;
-}
-interface Country {
-  iso_3166_1: string;
-  name: string;
-}
-interface Language {
+  origin_country: string;
+};
+
+type SpokenLanguage = {
+  english_name: string;
   iso_639_1: string;
   name: string;
-}
+};
 
-export interface IMovieDetails extends IMovie {
-  belongs_to_collection: Collection;
+type Cast = {
+  adult: boolean;
+  gender: number;
+  id: number;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string | null;
+  cast_id: number;
+  character: string;
+  credit_id: string;
+  order: number;
+};
+
+type Movie = {
+  adult: boolean;
+  backdrop_path: string | null;
+  belongs_to_collection: null | string;
   budget: number;
   genres: Genre[];
   homepage: string;
+  id: number;
   imdb_id: string;
-  production_companies: Company[];
-  production_countries: Country[];
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string | null;
+  production_companies: ProductionCompany[];
+  production_countries: {iso_3166_1: string; name: string}[];
+  release_date: string;
   revenue: number;
   runtime: number;
-  spoken_languages: Language[];
+  spoken_languages: SpokenLanguage[];
   status: string;
   tagline: string;
-}
+  title: string;
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
+  casts: {cast: Cast[]};
+  images: ImageData;
+};
+
+type Backdrop = {
+  aspect_ratio: number;
+  height: number;
+  iso_639_1: string | null;
+  file_path: string;
+  vote_average: number;
+  vote_count: number;
+  width: number;
+};
+
+type ImageData = {
+  backdrops: Backdrop[];
+};
+
+export interface IMovieDetails extends Movie {}

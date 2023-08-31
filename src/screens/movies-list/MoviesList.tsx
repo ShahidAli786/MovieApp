@@ -7,18 +7,23 @@ import {
 } from 'react-native';
 import React, {useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@store/hooks';
-import {RouteProp, useRoute} from '@react-navigation/native';
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {MainStackParamsList} from '@navigations/stacks/types';
 import {moviesApis} from '@store/apis/moviesApis';
 import MovieListItem from './MovieListItem';
 import {useTheme} from '@theme/useTheme';
 import {reset} from '@store/slices/moviesSlice';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {IMovie} from '@definitions/movies';
+
+type TNavigation = NativeStackNavigationProp<MainStackParamsList, 'MoviesList'>;
 
 type RouteProps = RouteProp<MainStackParamsList, 'MoviesList'>;
 
 export default function MoviesList() {
   const theme = useTheme();
   const route = useRoute<RouteProps>();
+  const navigation = useNavigation<TNavigation>();
 
   const {movies, isLoading, currentPage, prevPage, totalPages} = useAppSelector(
     state => state.movies,
@@ -55,6 +60,11 @@ export default function MoviesList() {
       }),
     );
   };
+  const handleViewDetails = (info: IMovie) => {
+    navigation.navigate('MovieDetails', {
+      info,
+    });
+  };
 
   const renderSeprator = () => <View style={styles.seprator} />;
   return (
@@ -74,7 +84,12 @@ export default function MoviesList() {
       style={styles.container}
       initialNumToRender={10}
       ItemSeparatorComponent={renderSeprator}
-      renderItem={({item}) => <MovieListItem info={item} />}
+      renderItem={({item}) => (
+        <MovieListItem
+          onViewDetails={() => handleViewDetails(item)}
+          info={item}
+        />
+      )}
       keyExtractor={item => item.id.toString()}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}

@@ -6,6 +6,7 @@ import {
 } from '@react-navigation/native';
 import MainStack from './stacks/MainStack';
 import {useTheme} from '@theme/useTheme';
+import {StyleSheet, View} from 'react-native';
 
 export default function AppContainer() {
   const theme = useTheme();
@@ -19,12 +20,17 @@ export default function AppContainer() {
       card: theme.backgroundColor,
       text: theme.titleText,
       primary: theme.primary,
-      border: 'transparent',
+      border: theme.backgroundColor,
     },
   };
   return (
-    <NavigationContainer theme={navigationTheme}>
-      <MainStack />
-    </NavigationContainer>
+    <View style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
+      <NavigationContainer theme={navigationTheme}>
+        <MainStack />
+      </NavigationContainer>
+    </View>
   );
 }
+const styles = StyleSheet.create({
+  container: {flex: 1},
+});

@@ -44,4 +44,5 @@ export const {
   useRetrievePopularMoviesQuery: useRetrievePopularMovies,
   useRetrieveNowPlayingQuery: useRetrieveNowPlaying,
   useRetrieveMoviesListQuery: useRetrieveMoviesList,
+  useRetrieveMovieDetailsQuery: useRetrieveMovieDetails,
 } = moviesApis;

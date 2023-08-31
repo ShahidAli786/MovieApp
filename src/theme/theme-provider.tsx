@@ -20,7 +20,7 @@ function isTheme(object: unknown): object is TSupportedThemes {
 export function ThemeProvider({children}: Props) {
   const colorScheme = useColorScheme();
   //for using a single theme use light theme
-  const [theme, setTheme] = useState(colorScheme || 'light');
+  const [theme, setTheme] = useState(colorScheme || 'dark');
 
   useEffect(() => {
     const loadTheme = async () => {

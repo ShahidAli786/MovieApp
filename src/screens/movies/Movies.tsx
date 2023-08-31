@@ -22,7 +22,7 @@ import {MainStackParamsList} from '@navigations/stacks/types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainTabsParamsList} from '@navigations/types';
 import {CompositeNavigationProp, useNavigation} from '@react-navigation/native';
-import {TYPE} from '@definitions/movies';
+import {IMovie, TYPE} from '@definitions/movies';
 import {useAppDispatch} from '@store/hooks';
 import {reset} from '@store/slices/moviesSlice';
 type TNavigation = CompositeNavigationProp<
@@ -50,11 +50,21 @@ export default function Movies() {
     });
   };
 
+  const handleViewDetails = (info: IMovie) => {
+    navigation.navigate('MovieDetails', {
+      info,
+    });
+  };
+
   return (
     <ScrollView style={styles.container}>
       <Swiper autoplay height={248} autoplayTimeout={4} showsPagination={false}>
         {nowPlayingMovies?.map(info => (
-          <CardOne key={info.id} info={info} />
+          <CardOne
+            onViewDetails={() => handleViewDetails(info)}
+            key={info.id}
+            info={info}
+          />
         ))}
       </Swiper>
       <View>
@@ -74,7 +84,11 @@ export default function Movies() {
         </View>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {popularMovies?.results.map(info => (
-            <CardTwo key={info.id} info={info} />
+            <CardTwo
+              onViewDetails={() => handleViewDetails(info)}
+              key={info.id}
+              info={info}
+            />
           ))}
         </ScrollView>
         <View style={styles.browseList}>
