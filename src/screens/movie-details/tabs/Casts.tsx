@@ -3,12 +3,14 @@ import React from 'react';
 import {IMovieDetails} from '@definitions/movies';
 import {TMDB_IMG_URL} from '@config/config';
 import normalize from '@config/normalize';
+import {useTheme} from '@theme/useTheme';
 
 type Props = {
   info?: IMovieDetails;
 };
 
 export default function Casts({info}: Props) {
+  const theme = useTheme();
   return (
     <ScrollView nestedScrollEnabled style={styles.container}>
       {info?.casts.cast.map(item => (
@@ -18,14 +20,16 @@ export default function Casts({info}: Props) {
             style={styles.castImage}
           />
           <View style={styles.characterContainer}>
-            <Text style={styles.characterName}>{item.name}</Text>
-            <Text style={styles.asCharacter}>
+            <Text style={[styles.characterName, {color: theme.titleText}]}>
+              {item.name}
+            </Text>
+            <Text style={[styles.asCharacter, {color: theme.titleText}]}>
               {item.character && `as ${item.character}`}
             </Text>
           </View>
         </View>
       ))}
-      <View style={{height: normalize(100)}} />
+      <View style={{height: normalize(200)}} />
     </ScrollView>
   );
 }

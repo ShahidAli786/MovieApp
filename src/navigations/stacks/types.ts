@@ -8,4 +8,5 @@ export type MainStackParamsList = {
   MainTabs: NavigatorScreenParams<MainTabsParamsList>;
   MoviesList: {title: string; type: TYPE};
   MovieDetails: {info: IMovie};
+  SearchMovies: undefined;
 };

@@ -1,6 +1,7 @@
 import {IMovie} from '@definitions/movies';
 import {createSlice} from '@reduxjs/toolkit';
 import {moviesApis} from '@store/apis/moviesApis';
+import {removeDuplicatesById} from 'src/utils/ArrayUtils';
 
 interface IMoviesState {
   movies: IMovie[];
@@ -40,11 +41,13 @@ const moviesSlice = createSlice({
     builder.addMatcher(
       moviesApis.endpoints.retrieveMoviesList.matchFulfilled,
       (state, {payload}) => {
-        state.movies = [...state.movies, ...payload.results];
+        state.movies = removeDuplicatesById([
+          ...state.movies,
+          ...payload.results,
+        ]);
         state.prevPage = state.currentPage;
         state.currentPage += 1;
         state.totalPages = payload.total_pages;
-
         state.isLoading = false;
       },
     );

@@ -21,22 +21,21 @@ type Props = {
 function MovieListItem({info, onViewDetails}: Props) {
   const theme = useTheme();
   return (
-    <View style={styles.cardContainer}>
+    <View style={[styles.cardContainer, {shadowColor: theme.titleText}]}>
       <TouchableOpacity activeOpacity={0.9} onPress={onViewDetails}>
-        <View style={[styles.card, {backgroundColor: theme.titleText}]}>
+        <View style={[styles.card, {backgroundColor: theme.card}]}>
           <Image
             source={{uri: `${TMDB_IMG_URL}/w185/${info.poster_path}`}}
             style={styles.cardImage}
           />
           <View style={styles.cardDetails}>
             <Text
-              style={[styles.cardTitle, {color: theme.backgroundColor}]}
+              style={[styles.cardTitle, {color: theme.titleText}]}
               numberOfLines={3}>
               {info.original_title}
             </Text>
             <View style={styles.cardGenre}>
-              <Text
-                style={[styles.cardGenreItem, {color: theme.backgroundColor}]}>
+              <Text style={[styles.cardGenreItem, {color: theme.titleText}]}>
                 {info.release_date.toString().substring(0, 4)}
               </Text>
             </View>
@@ -45,17 +44,14 @@ function MovieListItem({info, onViewDetails}: Props) {
                 <Icon name="star" size={16} color="#F5B642" />
 
                 <Text
-                  style={[
-                    styles.cardStarRatings,
-                    {color: theme.backgroundColor},
-                  ]}>
+                  style={[styles.cardStarRatings, {color: theme.titleText}]}>
                   {info.vote_average.toFixed(1)}
                 </Text>
               </View>
               <Text style={styles.cardRunningHours} />
             </View>
             <Text
-              style={[styles.cardDescription, {color: theme.backgroundColor}]}
+              style={[styles.cardDescription, {color: theme.titleText}]}
               numberOfLines={3}>
               {info.overview}
             </Text>
@@ -71,7 +67,16 @@ export default memo(MovieListItem);
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
+    elevation: 2,
     marginHorizontal: 16,
+    // shadow
+
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
   },
   card: {
     borderRadius: 5,

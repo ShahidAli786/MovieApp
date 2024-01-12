@@ -7,6 +7,7 @@ import OnBoarding from '@screens/on-boarding/OnBoarding';
 import MoviesList from '@screens/movies-list/MoviesList';
 import MovieDetails from '@screens/movie-details/MovieDetails';
 import Movies from '@screens/movies/Movies';
+import SearchMovies from '@screens/search-movies/SearchMovies';
 
 const Stack = createNativeStackNavigator<MainStackParamsList>();
 
@@ -40,6 +41,14 @@ export default function MainStack() {
         }}
         name="MovieDetails"
         component={MovieDetails}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: false,
+          animation: 'none',
+        }}
+        name="SearchMovies"
+        component={SearchMovies}
       />
     </Stack.Navigator>
   );

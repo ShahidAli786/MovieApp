@@ -4,12 +4,14 @@ import _ from 'lodash';
 import moment from 'moment';
 import numeral from 'numeral';
 import normalize from '@config/normalize';
+import {useTheme} from '@theme/useTheme';
 
 type Props = {
   info: any;
 };
 
 export default function Info({info}: Props) {
+  const theme = useTheme();
   const director = _.filter(info.casts.crew, {
     department: 'Directing',
     job: 'Director',
@@ -21,22 +23,32 @@ export default function Info({info}: Props) {
   return (
     <ScrollView nestedScrollEnabled style={styles.container}>
       <View style={styles.overview}>
-        <Text style={styles.label}>Overview</Text>
-        <Text style={styles.overviewText}>{info.overview}</Text>
+        <Text style={[styles.label, {color: theme.titleText}]}>Overview</Text>
+        <Text style={[styles.overviewText, {color: theme.titleText}]}>
+          {info.overview}
+        </Text>
+      </View>
+      <View style={[styles.labelRow]}>
+        <Text style={[styles.label, {color: theme.titleText}]}>
+          Release Date
+        </Text>
+        <Text style={[styles.value, {color: theme.titleText}]}>
+          {releaseDate}
+        </Text>
       </View>
       <View style={styles.labelRow}>
-        <Text style={styles.label}>Release Date</Text>
-        <Text style={styles.value}>{releaseDate}</Text>
+        <Text style={[styles.label, {color: theme.titleText}]}>
+          Directed By
+        </Text>
+        <Text style={[styles.value, {color: theme.titleText}]}>
+          {director[0].name}
+        </Text>
       </View>
       <View style={styles.labelRow}>
-        <Text style={styles.label}>Directed By</Text>
-        <Text style={styles.value}>{director[0].name}</Text>
+        <Text style={[styles.label, {color: theme.titleText}]}>Budget</Text>
+        <Text style={[styles.value, {color: theme.titleText}]}>{budget}</Text>
       </View>
-      <View style={styles.labelRow}>
-        <Text style={styles.label}>Budget</Text>
-        <Text style={styles.value}>{budget}</Text>
-      </View>
-      <View style={{height: normalize(100)}} />
+      <View style={{height: normalize(200)}} />
     </ScrollView>
   );
 }

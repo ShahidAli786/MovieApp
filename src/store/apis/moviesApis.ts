@@ -3,7 +3,6 @@ import {TMDB_API_KEY, TMDB_URL} from '@config/config';
 import {Genre, IMovieDetails, TYPE} from '@definitions/movies';
 import {IMoviesListResponse, INowPlayingsResponse} from './moviesTypes';
 
-console.log(TMDB_URL);
 export const moviesApis = createApi({
   reducerPath: 'createPostApis',
   baseQuery: fetchBaseQuery({
@@ -36,6 +35,11 @@ export const moviesApis = createApi({
         return currentArg !== previousArg;
       },
     }),
+    // search movies
+    searchMovies: builder.query<IMoviesListResponse, {query: string}>({
+      query: ({query}) =>
+        `/search/movie?api_key=${TMDB_API_KEY}&query=${query}`,
+    }),
   }),
 });
 
@@ -45,4 +49,5 @@ export const {
   useRetrieveNowPlayingQuery: useRetrieveNowPlaying,
   useRetrieveMoviesListQuery: useRetrieveMoviesList,
   useRetrieveMovieDetailsQuery: useRetrieveMovieDetails,
+  useLazySearchMoviesQuery: useSearchMoviesLazy,
 } = moviesApis;

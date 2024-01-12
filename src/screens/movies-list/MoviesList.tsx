@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   View,
   FlatList,
@@ -5,7 +6,7 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from '@store/hooks';
 import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
 import {MainStackParamsList} from '@navigations/stacks/types';
@@ -15,6 +16,7 @@ import {useTheme} from '@theme/useTheme';
 import {reset} from '@store/slices/moviesSlice';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {IMovie} from '@definitions/movies';
+import SearchInputButton from '@components/search-input/SearchInputButton';
 
 type TNavigation = NativeStackNavigationProp<MainStackParamsList, 'MoviesList'>;
 
@@ -31,18 +33,17 @@ export default function MoviesList() {
 
   const dispatch = useAppDispatch();
 
-  const getMoviesList = () => {
+  const getMoviesList = useCallback(() => {
     dispatch(
       moviesApis.endpoints.retrieveMoviesList.initiate({
         page: currentPage,
         type: route.params.type,
       }),
     );
-  };
+  }, [currentPage]);
 
   useEffect(() => {
     getMoviesList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLoadMore = () => {
@@ -66,10 +67,19 @@ export default function MoviesList() {
     });
   };
 
+  const handleSearchPress = () => {
+    navigation.navigate('SearchMovies');
+  };
   const renderSeprator = () => <View style={styles.seprator} />;
+  const renderListItem = () => (
+    <SearchInputButton onPress={handleSearchPress} />
+  );
   return (
     <FlatList
       data={movies}
+      stickyHeaderHiddenOnScroll
+      stickyHeaderIndices={[0]}
+      ListHeaderComponent={renderListItem}
       refreshControl={
         <RefreshControl
           refreshing={false}
@@ -92,13 +102,15 @@ export default function MoviesList() {
       )}
       keyExtractor={item => item.id.toString()}
       onEndReached={handleLoadMore}
-      onEndReachedThreshold={0.5}
+      onEndReachedThreshold={0.8}
       ListFooterComponent={
         isLoading ? (
           <View style={styles.loader}>
             <ActivityIndicator size="large" color={theme.primary} />
           </View>
-        ) : null
+        ) : (
+          <View style={styles.loader} />
+        )
       }
     />
   );

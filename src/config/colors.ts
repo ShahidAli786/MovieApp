@@ -13,12 +13,16 @@ const mentions = {
 export const colors = {
   light: {
     backgroundColor: '#fff',
+    cardBackground: '#f6f6f6',
     titleText: '#0d0e12',
+    card: '#f9f9f9',
     ...mentions,
   },
   dark: {
     backgroundColor: '#080808',
+    cardBackground: '#080808',
     titleText: '#f9f9f9',
+    card: '#232D3F',
     ...mentions,
   },
 };
