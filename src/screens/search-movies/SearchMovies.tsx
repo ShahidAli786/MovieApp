@@ -1,9 +1,7 @@
 import {View, FlatList, StyleSheet, RefreshControl} from 'react-native';
 import React, {useState} from 'react';
-
 import {useNavigation} from '@react-navigation/native';
 import {MainStackParamsList} from '@navigations/stacks/types';
-
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {IMovie} from '@definitions/movies';
 import MovieListItem from '@screens/movies-list/MovieListItem';
@@ -11,6 +9,7 @@ import SearchInput from '@components/search-input/SearchInput';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSearchMoviesLazy} from '@store/apis/moviesApis';
 import {debounce} from 'lodash';
+import SearchEmptyState from './SearchEmptyState';
 
 type TNavigation = NativeStackNavigationProp<
   MainStackParamsList,
@@ -20,7 +19,6 @@ type TNavigation = NativeStackNavigationProp<
 export default function SearchMovies() {
   const [searchText, setSearchText] = useState('');
   const [searchMovies, {isLoading, data, isFetching}] = useSearchMoviesLazy();
-
   const navigation = useNavigation<TNavigation>();
 
   const handleLoadMore = () => {};
@@ -59,6 +57,9 @@ export default function SearchMovies() {
       />
       <FlatList
         data={searchText.length < 3 ? [] : data?.results}
+        ListEmptyComponent={
+          data?.results?.length === 0 ? SearchEmptyState : null
+        }
         refreshControl={
           <RefreshControl
             refreshing={false}

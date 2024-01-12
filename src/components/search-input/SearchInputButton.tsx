@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     ...fonts.medium,
+    color: 'grey',
   },
   inputView: {
     height: 45,

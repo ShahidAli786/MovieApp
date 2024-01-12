@@ -113,7 +113,7 @@ export default function MovieDetails() {
                   <Icon name="star" size={14} color="#F5B642" />
                   <Text
                     style={[styles.cardStarRatings, {color: theme.titleText}]}>
-                    8.9
+                    {data?.vote_average.toFixed(1)}
                   </Text>
                 </View>
                 <Text style={styles.cardRunningHours} />

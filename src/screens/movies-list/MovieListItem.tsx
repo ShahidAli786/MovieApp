@@ -67,7 +67,7 @@ export default memo(MovieListItem);
 const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
-    elevation: 2,
+    elevation: 5,
     marginHorizontal: 16,
     // shadow
 
