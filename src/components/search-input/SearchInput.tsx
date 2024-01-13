@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
       height: 0,
     },
     elevation: 2,
+    textAlignVertical: 'center',
   },
   inputRow: {
     flexDirection: 'row',

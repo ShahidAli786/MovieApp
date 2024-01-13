@@ -56,6 +56,8 @@ react {
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
 def enableProguardInReleaseBuilds = false
+def enableSeparateBuildPerCPUArchitecture = true
+
 
 /**
  * The preferred build flavor of JavaScriptCore (JSC)
@@ -69,6 +71,10 @@ def enableProguardInReleaseBuilds = false
  * this variant is about 6MiB larger per architecture than default.
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
+def reactNativeArchitectures() {
+    def value = project.getProperties().get("reactNativeArchitectures")
+    return value ? value.split(",") : ["armeabi-v7a", "x86", "x86_64", "arm64-v8a"]
+}
 
 android {
     ndkVersion rootProject.ext.ndkVersion
@@ -91,6 +97,14 @@ android {
             keyPassword 'android'
         }
     }
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk enableSeparateBuildPerCPUArchitecture  // If true, also generate a universal APK
+            include (*reactNativeArchitectures())
+        }
+    }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
@@ -102,6 +116,18 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+        applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a":1, "x86":2, "arm64-v8a": 3, "x86_64": 4]
+            def abi = output.filters[0]
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi.identifier) * 2000000 + defaultConfig.versionCode
+            }
+        }
+    }
     }
 }
 
