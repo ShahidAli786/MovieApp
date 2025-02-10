@@ -31,7 +31,7 @@ jobs:
       - name: Execute Fastlane command
         run: cd android && fastlane beta
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: app-release.apk
           path: android/app/build/outputs/apk/release/
